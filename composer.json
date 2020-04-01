@@ -1,0 +1,28 @@
+{
+    "name": "bus-factor/json-api-model",
+    "description": "json:api model",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Michael Leßnau",
+            "email": "michael.lessnau@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JsonApi\\": "src/JsonApi"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\JsonApi\\": "tests/JsonApi"
+        }
+    },
+    "require": {
+        "php": "~7.4",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}
