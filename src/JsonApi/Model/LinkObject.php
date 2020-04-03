@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class LinkObject
  */
-class LinkObject extends AbstractObject
+class LinkObject implements JsonSerializable
 {
     /**
      * @var string

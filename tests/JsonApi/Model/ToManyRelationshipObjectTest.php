@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
  * Class ToManyRelationshipObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\ToManyRelationshipObject
- * @uses \JsonApi\Model\AbstractObject
+ * @uses \JsonApi\Model\Collection
  * @uses \JsonApi\Model\LinkObject
  * @uses \JsonApi\Model\LinksObject
  * @uses \JsonApi\Model\MetaObject

@@ -12,17 +12,13 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class ErrorObjectCollection
  */
-class ErrorObjectCollection extends AbstractObject
+class ErrorObjectCollection extends Collection implements JsonSerializable
 {
-    /**
-     * @var array|ErrorObject[]
-     */
-    private array $errorObjects = [];
-
     /**
      * @param array|ErrorObject[] $errorObjects
      *
@@ -30,25 +26,7 @@ class ErrorObjectCollection extends AbstractObject
      */
     public function __construct(array $errorObjects)
     {
-        foreach ($errorObjects as $errorObject) {
-            if (!$errorObject instanceof ErrorObject) {
-                throw new InvalidArgumentException(sprintf(
-                    'Type mismatch: expected %s, got %s',
-                    ErrorObject::class,
-                    get_class($errorObject)
-                ));
-            }
-
-            $this->errorObjects[] = $errorObject;
-        }
-    }
-
-    /**
-     * @return array|ErrorObject[]
-     */
-    public function getErrorObjects(): array
-    {
-        return $this->errorObjects;
+        parent::__construct(ErrorObject::class, $errorObjects);
     }
 
     /**
@@ -59,7 +37,7 @@ class ErrorObjectCollection extends AbstractObject
         $object = [];
 
         /** @var ErrorObject $errorObject */
-        foreach ($this->errorObjects as $errorObject) {
+        foreach ($this as $errorObject) {
             $object[] = $errorObject->jsonSerialize();
         }
 

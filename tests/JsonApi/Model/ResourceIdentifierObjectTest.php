@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
  * Class ResourceIdentifierObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\ResourceIdentifierObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\MetaObject
  * @uses \JsonApi\Model\ResourceIdentifierObject
  */

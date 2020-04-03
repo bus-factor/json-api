@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class ResourceObject
  */
-class ResourceObject extends AbstractObject
+class ResourceObject implements JsonSerializable
 {
     /**
      * @var AttributesObject|null
@@ -236,7 +237,7 @@ class ResourceObject extends AbstractObject
      */
     private function setType(string $type): self
     {
-        if (!$this->isValidMemberName($type)) {
+        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
             throw new InvalidArgumentException('Invalid type name: ' . $type);
         }
 

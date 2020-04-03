@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
  * Class JsonapiObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\JsonapiObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\JsonapiObject
  * @uses \JsonApi\Model\MetaObject
  */

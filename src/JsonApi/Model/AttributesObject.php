@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class AttributesObject
  */
-class AttributesObject extends AbstractObject
+class AttributesObject implements JsonSerializable
 {
     /**
      * @var array
@@ -93,11 +94,11 @@ class AttributesObject extends AbstractObject
      */
     private function setField(string $name, $value): self
     {
-        if (!$this->isValidMemberName($name)) {
+        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
             throw new InvalidArgumentException('Invalid field name: ' . $name);
         }
 
-        if ($this->isReservedFieldName($name)) {
+        if (in_array($name, ['type', 'id'], true)) {
             throw new InvalidArgumentException('Reserved field name: ' . $name);
         }
 

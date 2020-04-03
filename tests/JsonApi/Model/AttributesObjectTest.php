@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
  * Class AttributesObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\AttributesObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\AttributesObject
  */
 class AttributesObjectTest extends TestCase
@@ -132,6 +131,26 @@ class AttributesObjectTest extends TestCase
         $subject = new AttributesObject($fields);
 
         $this->assertEquals($fields, $subject->getFields());
+    }
+
+    /**
+     * @return void
+     *
+     * @covers ::__construct
+     * @covers ::getFieldNames
+     * @covers ::setField
+     * @covers ::setFields
+     */
+    public function testGetFieldNames(): void
+    {
+        $fields = [
+            'a' => 42,
+            'b' => 1337,
+        ];
+
+        $subject = new AttributesObject($fields);
+
+        $this->assertEquals(array_keys($fields), $subject->getFieldNames());
     }
 
     /**

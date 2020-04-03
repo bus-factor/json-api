@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class MetaObject
  */
-class MetaObject extends AbstractObject
+class MetaObject implements JsonSerializable
 {
     /**
      * @var array
@@ -85,7 +86,7 @@ class MetaObject extends AbstractObject
      */
     private function setMember(string $name, $value): self
     {
-        if (!$this->isValidMemberName($name)) {
+        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
             throw new InvalidArgumentException('Invalid member name: ' . $name);
         }
 

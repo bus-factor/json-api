@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class LinksObject
  */
-class LinksObject extends AbstractObject
+class LinksObject implements JsonSerializable
 {
     /**
      * @var LinkObject[]
@@ -91,7 +92,7 @@ class LinksObject extends AbstractObject
      */
     private function setLink(string $name, LinkObject $link): self
     {
-        if (!$this->isValidMemberName($name)) {
+        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
             throw new InvalidArgumentException('Invalid link name: ' . $name);
         }
 

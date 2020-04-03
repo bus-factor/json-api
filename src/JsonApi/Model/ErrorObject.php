@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class ErrorObject
  */
-class ErrorObject extends AbstractObject
+class ErrorObject implements JsonSerializable
 {
     private const STATUSES = [
         /*

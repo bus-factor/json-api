@@ -20,7 +20,6 @@ use PHPUnit\Framework\TestCase;
  * Class LinkObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\LinkObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\LinkObject
  * @uses \JsonApi\Model\MetaObject
  */

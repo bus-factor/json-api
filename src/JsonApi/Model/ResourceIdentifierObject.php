@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace JsonApi\Model;
 
+use JsonSerializable;
+
 /**
  * Class ResourceIdentifierObject
  */
-class ResourceIdentifierObject extends AbstractObject
+class ResourceIdentifierObject implements JsonSerializable
 {
     /**
      * @var string

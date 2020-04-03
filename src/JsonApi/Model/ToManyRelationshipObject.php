@@ -14,7 +14,7 @@ namespace JsonApi\Model;
 /**
  * Class ToManyRelationshipObject
  */
-class ToManyRelationshipObject extends AbstractObject implements RelationshipObjectInterface
+class ToManyRelationshipObject implements RelationshipObjectInterface
 {
     use RelationshipObjectTrait;
 

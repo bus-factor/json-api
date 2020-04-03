@@ -25,7 +25,7 @@ use stdClass;
  * Class RelationshipsObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\RelationshipsObject
- * @uses \JsonApi\Model\AbstractObject
+ * @uses \JsonApi\Model\Collection
  * @uses \JsonApi\Model\MetaObject
  * @uses \JsonApi\Model\RelationshipObjectTrait
  * @uses \JsonApi\Model\RelationshipsObject
@@ -101,6 +101,25 @@ class RelationshipsObjectTest extends TestCase
         $this->expectExceptionMessage('Undefined field: foo');
 
         $subject->getField('foo');
+    }
+
+    /**
+     * @return void
+     *
+     * @covers ::__construct
+     * @covers ::getFieldNames
+     * @covers ::setFields
+     */
+    public function testGetFieldNames(): void
+    {
+        $fields = [
+            'author' => new ToOneRelationshipObject(),
+            'comments' => new ToManyRelationshipObject(),
+        ];
+
+        $subject = new RelationshipsObject($fields);
+
+        $this->assertSame(array_keys($fields), $subject->getFieldNames());
     }
 
     /**

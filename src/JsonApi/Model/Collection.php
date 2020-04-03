@@ -12,12 +12,15 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use Iterator;
 
 /**
  * Class Collection
  */
-class Collection
+class Collection implements Iterator
 {
+    private const ERR_TYPE = 'Expected type %s, got %s';
+
     /**
      * @var string
      */
@@ -26,7 +29,12 @@ class Collection
     /**
      * @var array
      */
-    private array $items;
+    private array $items = [];
+
+    /**
+     * @var int
+     */
+    private int $itemsIndex = 0;
 
     /**
      * @param string $itemFqcn
@@ -38,7 +46,23 @@ class Collection
     {
         $this->itemFqcn = $itemFqcn;
 
-        $this->setItems($items);
+        foreach ($items as $item) {
+            if (get_class($item) !== $this->itemFqcn) {
+                throw new InvalidArgumentException(
+                    sprintf(self::ERR_TYPE, $this->itemFqcn, get_class($item))
+                );
+            }
+        }
+
+        $this->items = $items;
+    }
+
+    /**
+     * @return void
+     */
+    public function __clone()
+    {
+        $this->itemsIndex = 0;
     }
 
     /**
@@ -52,16 +76,11 @@ class Collection
     {
         if (get_class($item) !== $this->itemFqcn) {
             throw new InvalidArgumentException(
-                sprintf(
-                    'Expected type %s, got %s',
-                    $this->itemFqcn,
-                    get_class($item)
-                )
+                sprintf(self::ERR_TYPE, $this->itemFqcn, get_class($item))
             );
         }
 
         $collection = clone $this;
-
         $collection->items[] = $item;
 
         return $collection;
@@ -74,22 +93,67 @@ class Collection
      *
      * @throws InvalidArgumentException
      */
-    private function setItems(array $items): self
+    public function addAll(array $items): self
     {
         foreach ($items as $item) {
             if (get_class($item) !== $this->itemFqcn) {
                 throw new InvalidArgumentException(
-                    sprintf(
-                        'Expected type %s, got %s',
-                        $this->itemFqcn,
-                        get_class($item)
-                    )
+                    sprintf(self::ERR_TYPE, $this->itemFqcn, get_class($item))
                 );
             }
         }
 
-        $this->items = $items;
+        $collection = clone $this;
+        $collection->items = [...$this->items, ...$items];
 
-        return $this;
+        return $collection;
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function current()
+    {
+        return $this->items[$this->itemsIndex];
+    }
+
+    /**
+     * @return bool|float|int|mixed|string|null
+     */
+    public function key()
+    {
+        return $this->itemsIndex;
+    }
+
+    /**
+     * @return bool|mixed|void
+     */
+    public function next()
+    {
+        $this->itemsIndex++;
+    }
+
+    /**
+     * @return void
+     */
+    public function rewind()
+    {
+        $this->itemsIndex = 0;
+    }
+
+    /**
+     * @return bool
+     */
+    public function valid()
+    {
+        return array_key_exists($this->itemsIndex, $this->items);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->items;
     }
 }

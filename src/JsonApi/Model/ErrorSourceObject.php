@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace JsonApi\Model;
 
+use JsonSerializable;
+
 /**
  * Class ErrorSourceObject
  */
-class ErrorSourceObject extends AbstractObject
+class ErrorSourceObject implements JsonSerializable
 {
     /**
      * @var string|null

@@ -23,7 +23,6 @@ use PHPUnit\Framework\TestCase;
  * Class ToOneRelationshipObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\ToOneRelationshipObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\LinkObject
  * @uses \JsonApi\Model\LinksObject
  * @uses \JsonApi\Model\MetaObject

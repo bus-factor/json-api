@@ -21,6 +21,7 @@ use stdClass;
  * Class ResourceIdentifierObjectCollectionTest
  *
  * @coversDefaultClass \JsonApi\Model\ResourceIdentifierObjectCollection
+ * @uses \JsonApi\Model\Collection
  * @uses \JsonApi\Model\ResourceIdentifierObject
  * @uses \JsonApi\Model\ResourceIdentifierObjectCollection
  */
@@ -30,7 +31,6 @@ class ResourceIdentifierObjectCollectionTest extends TestCase
      * @return void
      *
      * @covers ::__construct
-     * @covers ::getResourceIdentifierObjects
      */
     public function testConstruct(): void
     {
@@ -45,13 +45,13 @@ class ResourceIdentifierObjectCollectionTest extends TestCase
 
         $this->assertSame(
             $resourceIdentifierObjects,
-            $subject->getResourceIdentifierObjects()
+            $subject->toArray()
         );
 
         $this->expectException(InvalidArgumentException::class);
 
         $this->expectExceptionMessage(sprintf(
-            'Type mismatch: expected %s, got %s',
+            'Expected type %s, got %s',
             ResourceIdentifierObject::class,
             'stdClass'
         ));

@@ -23,7 +23,6 @@ use PHPUnit\Framework\TestCase;
  * Class ErrorObjectTest
  *
  * @coversDefaultClass \JsonApi\Model\ErrorObject
- * @uses \JsonApi\Model\AbstractObject
  * @uses \JsonApi\Model\ErrorObject
  * @uses \JsonApi\Model\ErrorSourceObject
  * @uses \JsonApi\Model\LinkObject

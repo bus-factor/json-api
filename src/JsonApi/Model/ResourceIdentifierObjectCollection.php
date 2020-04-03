@@ -12,17 +12,13 @@ declare(strict_types=1);
 namespace JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * Class ResourceIdentifierObjectCollection
  */
-class ResourceIdentifierObjectCollection extends AbstractObject
+class ResourceIdentifierObjectCollection extends Collection implements JsonSerializable
 {
-    /**
-     * @var ResourceIdentifierObject[]
-     */
-    private array $resourceIdentifierObjects = [];
-
     /**
      * @param ResourceIdentifierObject[] $resourceIdentifierObjects
      *
@@ -30,25 +26,7 @@ class ResourceIdentifierObjectCollection extends AbstractObject
      */
     public function __construct(array $resourceIdentifierObjects = [])
     {
-        foreach ($resourceIdentifierObjects as $resourceIdentifierObject) {
-            if (!$resourceIdentifierObject instanceof ResourceIdentifierObject) {
-                throw new InvalidArgumentException(sprintf(
-                    'Type mismatch: expected %s, got %s',
-                    ResourceIdentifierObject::class,
-                    get_class($resourceIdentifierObject)
-                ));
-            }
-
-            $this->resourceIdentifierObjects[] = $resourceIdentifierObject;
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function getResourceIdentifierObjects(): array
-    {
-        return $this->resourceIdentifierObjects;
+        parent::__construct(ResourceIdentifierObject::class, $resourceIdentifierObjects);
     }
 
     /**
@@ -58,7 +36,7 @@ class ResourceIdentifierObjectCollection extends AbstractObject
     {
         $object = [];
 
-        foreach ($this->resourceIdentifierObjects as $resourceIdentifierObject) {
+        foreach ($this as $resourceIdentifierObject) {
             $object[] = $resourceIdentifierObject->jsonSerialize();
         }
 
