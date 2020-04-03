@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "JsonApi\\": "src/JsonApi"
+            "JsonApi\\Model\\": "src/JsonApi/Model"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\JsonApi\\": "tests/JsonApi"
+            "Test\\JsonApi\\Model\\": "tests/JsonApi/Model"
         }
     },
     "require": {
@@ -23,6 +23,6 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": ">=6.0"
     }
 }

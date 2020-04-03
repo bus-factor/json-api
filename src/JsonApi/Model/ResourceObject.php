@@ -237,12 +237,96 @@ class ResourceObject implements JsonSerializable
      */
     private function setType(string $type): self
     {
-        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
+        if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $type) !== 1) {
             throw new InvalidArgumentException('Invalid type name: ' . $type);
         }
 
         $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * @param AttributesObject $attributes
+     *
+     * @return $this
+     *
+     * @throws InvalidArgumentException
+     */
+    public function withAttributes(AttributesObject $attributes): self
+    {
+        return (clone $this)
+            ->setAttributes($attributes);
+    }
+
+    /**
+     * @param LinksObject $links
+     *
+     * @return $this
+     */
+    public function withLinks(LinksObject $links): self
+    {
+        return (clone $this)
+            ->setLinks($links);
+    }
+
+    /**
+     * @param MetaObject $meta
+     *
+     * @return $this
+     */
+    public function withMeta(MetaObject $meta): self
+    {
+        return (clone $this)
+            ->setMeta($meta);
+    }
+
+    /**
+     * @param RelationshipsObject $relationships
+     *
+     * @return $this
+     *
+     * @covers InvalidArgumentException
+     */
+    public function withRelationships(RelationshipsObject $relationships): self
+    {
+        return (clone $this)
+            ->setRelationships($relationships);
+    }
+
+    /**
+     * @return $this
+     */
+    public function withoutAttributes(): self
+    {
+        return (clone $this)
+            ->setAttributes(null);
+    }
+
+    /**
+     * @return $this
+     */
+    public function withoutLinks(): self
+    {
+        return (clone $this)
+            ->setLinks(null);
+    }
+
+    /**
+     * @return $this
+     */
+    public function withoutMeta(): self
+    {
+        return (clone $this)
+            ->setMeta(null);
+    }
+
+    /**
+     * @return $this
+     */
+    public function withoutRelationships(): self
+    {
+        return (clone $this)
+            ->setRelationships(null);
     }
 }
