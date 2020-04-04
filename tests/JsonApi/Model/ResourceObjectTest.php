@@ -204,7 +204,7 @@ class ResourceObjectTest extends TestCase
                     ],
                 ],
             ],
-            'meta' => [
+            'relationships' => [
                 (new ResourceObject('people', '42'))
                     ->withRelationships(new RelationshipsObject([
                         'foo' => new ToOneRelationshipObject(),

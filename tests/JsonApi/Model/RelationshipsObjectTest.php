@@ -19,7 +19,6 @@ use JsonApi\Model\ResourceIdentifierObjectCollection;
 use JsonApi\Model\ToManyRelationshipObject;
 use JsonApi\Model\ToOneRelationshipObject;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
  * Class RelationshipsObjectTest
