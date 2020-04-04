@@ -1,1 +1,1 @@
-# json-api-model
+# json-api

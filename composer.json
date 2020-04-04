@@ -1,7 +1,7 @@
 {
-    "name": "bus-factor/json-api-model",
-    "description": "json:api model",
-    "type": "project",
+    "name": "bus-factor/json-api",
+    "description": "json:api",
+    "type": "library",
     "authors": [
         {
             "name": "Michael Leßnau",
@@ -10,12 +10,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "JsonApi\\Model\\": "src/JsonApi/Model"
+            "JsonApi\\": "src/JsonApi"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\JsonApi\\Model\\": "tests/JsonApi/Model"
+            "Test\\JsonApi\\": "tests/JsonApi"
         }
     },
     "require": {
