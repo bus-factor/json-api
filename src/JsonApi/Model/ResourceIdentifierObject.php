@@ -16,7 +16,7 @@ use JsonSerializable;
 /**
  * Class ResourceIdentifierObject
  */
-class ResourceIdentifierObject implements JsonSerializable
+class ResourceIdentifierObject implements JsonSerializable, ResourceInterface
 {
     /**
      * @var string
@@ -44,9 +44,9 @@ class ResourceIdentifierObject implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }

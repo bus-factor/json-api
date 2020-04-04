@@ -76,7 +76,7 @@ class LinksObject implements JsonSerializable
         $object = [];
 
         foreach ($this->links as $name => $link) {
-            $object[$name] = $link->jsonSerialize();
+            $object[$name] = isset($link) ? $link->jsonSerialize() : null;
         }
 
         return $object;
@@ -84,13 +84,13 @@ class LinksObject implements JsonSerializable
 
     /**
      * @param string $name
-     * @param LinkObject $link
+     * @param LinkObject|null $link
      *
      * @return $this
      *
      * @throws InvalidArgumentException
      */
-    private function setLink(string $name, LinkObject $link): self
+    private function setLink(string $name, ?LinkObject $link): self
     {
         if (preg_match('/^[a-z\d]+([\-_][a-z\d]+)*$/i', $name) !== 1) {
             throw new InvalidArgumentException('Invalid link name: ' . $name);
@@ -141,11 +141,11 @@ class LinksObject implements JsonSerializable
 
     /**
      * @param string $name
-     * @param LinkObject $link
+     * @param LinkObject|null $link
      *
      * @return $this
      */
-    public function withLink(string $name, LinkObject $link): self
+    public function withLink(string $name, ?LinkObject $link): self
     {
         return (clone $this)
             ->setLink($name, $link);

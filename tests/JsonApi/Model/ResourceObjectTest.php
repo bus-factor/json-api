@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JsonApi\Model;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Test\JsonApi\Model\RelationshipsObjectTest;
 
@@ -115,7 +116,15 @@ class ResourceObjectTest extends TestCase
      */
     public function testWithAttributesPreventsFieldDuplication(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        try {
+            $subject = (new ResourceObject('people', '42'))
+                ->withRelationships(new RelationshipsObject(['b' => new ToOneRelationshipObject()]))
+                ->withAttributes(new AttributesObject(['a' => 'bar']));
+        } catch (\Throwable $exc) {
+            $this->fail();
+        }
+
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Field names must not appear as attributes and relationships: foo');
 
         (new ResourceObject('people', '42'))
@@ -320,7 +329,15 @@ class ResourceObjectTest extends TestCase
      */
     public function testWithRelationshipsPreventsFieldDuplication(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        try {
+            $subject = (new ResourceObject('people', '42'))
+                ->withAttributes(new AttributesObject(['a' => 'bar']))
+                ->withRelationships(new RelationshipsObject(['b' => new ToOneRelationshipObject()]));
+        } catch (\Throwable $exc) {
+            $this->fail();
+        }
+
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Field names must not appear as attributes and relationships: foo');
 
         (new ResourceObject('people', '42'))

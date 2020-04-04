@@ -17,7 +17,9 @@ use JsonSerializable;
 /**
  * Class ResourceIdentifierObjectCollection
  */
-class ResourceIdentifierObjectCollection extends Collection implements JsonSerializable
+class ResourceIdentifierObjectCollection extends Collection implements
+    JsonSerializable,
+    ResourceCollectionInterface
 {
     /**
      * @param ResourceIdentifierObject[] $resourceIdentifierObjects
@@ -26,7 +28,10 @@ class ResourceIdentifierObjectCollection extends Collection implements JsonSeria
      */
     public function __construct(array $resourceIdentifierObjects = [])
     {
-        parent::__construct(ResourceIdentifierObject::class, $resourceIdentifierObjects);
+        parent::__construct(
+            ResourceIdentifierObject::class,
+            $resourceIdentifierObjects
+        );
     }
 
     /**

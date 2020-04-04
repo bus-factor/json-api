@@ -17,7 +17,9 @@ use JsonSerializable;
 /**
  * Class ResourceObjectCollection
  */
-class ResourceObjectCollection extends Collection implements JsonSerializable
+class ResourceObjectCollection extends Collection implements
+    JsonSerializable,
+    ResourceCollectionInterface
 {
     /**
      * @param ResourceObject[] $resourceObjects

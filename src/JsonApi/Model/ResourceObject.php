@@ -17,7 +17,7 @@ use JsonSerializable;
 /**
  * Class ResourceObject
  */
-class ResourceObject implements JsonSerializable
+class ResourceObject implements JsonSerializable, ResourceInterface
 {
     /**
      * @var AttributesObject|null
@@ -154,10 +154,12 @@ class ResourceObject implements JsonSerializable
                 $attributes->getFieldNames()
             );
 
-            throw new InvalidArgumentException(sprintf(
-                'Field names must not appear as attributes and relationships: %s',
-                implode(', ', $fields)
-            ));
+            if (!empty($fields)) {
+                throw new InvalidArgumentException(sprintf(
+                    'Field names must not appear as attributes and relationships: %s',
+                    implode(', ', $fields)
+                ));
+            }
         }
 
         $this->attributes = $attributes;
@@ -217,10 +219,12 @@ class ResourceObject implements JsonSerializable
                 $this->attributes->getFieldNames()
             );
 
-            throw new InvalidArgumentException(sprintf(
-                'Field names must not appear as attributes and relationships: %s',
-                implode(', ', $fields)
-            ));
+            if (!empty($fields)) {
+                throw new InvalidArgumentException(sprintf(
+                    'Field names must not appear as attributes and relationships: %s',
+                    implode(', ', $fields)
+                ));
+            }
         }
 
         $this->relationships = $relationships;
