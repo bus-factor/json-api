@@ -9,11 +9,17 @@
 
 declare(strict_types=1);
 
-namespace JsonApi\Model;
+namespace Test\JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonApi\Model\AttributesObject;
+use JsonApi\Model\LinkObject;
+use JsonApi\Model\LinksObject;
+use JsonApi\Model\MetaObject;
+use JsonApi\Model\RelationshipsObject;
+use JsonApi\Model\ResourceObject;
+use JsonApi\Model\ToOneRelationshipObject;
 use PHPUnit\Framework\TestCase;
-use Test\JsonApi\Model\RelationshipsObjectTest;
 
 /**
  * Class ResourceObjectTest

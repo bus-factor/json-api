@@ -9,9 +9,10 @@
 
 declare(strict_types=1);
 
-namespace JsonApi\Model;
+namespace Test\JsonApi\Model;
 
 use InvalidArgumentException;
+use JsonApi\Model\Collection;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

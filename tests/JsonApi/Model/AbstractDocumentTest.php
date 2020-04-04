@@ -9,8 +9,12 @@
 
 declare(strict_types=1);
 
-namespace JsonApi\Model;
+namespace Test\JsonApi\Model;
 
+use JsonApi\Model\AbstractDocument;
+use JsonApi\Model\JsonapiObject;
+use JsonApi\Model\LinkObject;
+use JsonApi\Model\LinksObject;
 use PHPUnit\Framework\TestCase;
 
 /**

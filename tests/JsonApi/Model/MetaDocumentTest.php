@@ -9,8 +9,11 @@
 
 declare(strict_types=1);
 
-namespace JsonApi\Model;
+namespace Test\JsonApi\Model;
 
+use JsonApi\Model\JsonapiObject;
+use JsonApi\Model\MetaDocument;
+use JsonApi\Model\MetaObject;
 use PHPUnit\Framework\TestCase;
 
 /**
